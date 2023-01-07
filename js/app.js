@@ -63,14 +63,14 @@ function renderPosts(array, element = elCards) {
 
     const newCard = document.createElement("div");
 
-    newCard.className = "card col-12 col-sm-5 col-md-3 mb-3 ";
+    newCard.className = "card col-12 col-sm-5 col-md-3 mb-3 p-0";
     newCard.innerHTML = `
       <img src="${post.image}" class="card-img-top" alt="${post.title}" />
       <div class="card-body">
         <h5 class="card-title">${post.title}</h5>
         <p class="card-text">${post.description}</p>
-        <h6 class=" text-primary ">${newUl.outerHTML}</h6>
-        <p class="card-text mb-0 text-secondary">${post.date}</p>
+        <h6 class=" text-primary border-bottom ">${newUl.outerHTML}</h6>
+        <p class="card-text mb-0 text-secondary"><small>${post.date}</small></p>
       </div>
     `;
 

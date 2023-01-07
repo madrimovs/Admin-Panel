@@ -6,10 +6,9 @@ const elForm = findElement("#form-post");
 const elCards = findElement("#cards");
 const elSearchForm = findElement("#searchForm");
 const elSearch = findElement("#search");
-const elChange = findElement("changeList");
+const elChange = findElement("#changeSelect");
 
 let searchPost = [];
-
 let filteredPosts = [];
 
 //ARRAY POSTS
@@ -20,6 +19,7 @@ let posts = [
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
     date: "2023-01-12",
+    genres: ["Uzbekistan"],
   },
 
   {
@@ -28,6 +28,7 @@ let posts = [
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
     date: "2023-01-12",
+    genres: ["Sport"],
   },
 
   {
@@ -36,6 +37,7 @@ let posts = [
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
     date: "2023-01-12",
+    genres: ["Siyosat"],
   },
 ];
 
@@ -47,15 +49,28 @@ function renderPosts(array, element = elCards) {
   for (let i = 0; i < array.length; i++) {
     const post = array[i];
 
+    const newUl = document.createElement("ul");
+    newUl.className = "list-unstyled";
+
+    for (let i = 0; i < post.genres.length; i++) {
+      const element = post.genres[i];
+
+      const newLi = document.createElement("li");
+      newLi.className = "list-group-item";
+      newLi.textContent = element;
+      newUl.appendChild(newLi);
+    }
+
     const newCard = document.createElement("div");
 
-    newCard.className = "card col-12 col-sm-5 col-md-3 mb-3";
+    newCard.className = "card col-12 col-sm-5 col-md-3 mb-3 ";
     newCard.innerHTML = `
       <img src="${post.image}" class="card-img-top" alt="${post.title}" />
       <div class="card-body">
         <h5 class="card-title">${post.title}</h5>
         <p class="card-text">${post.description}</p>
-        <p class="mb-0 text-primary">${post.date}</p>
+        <h6 class=" text-primary ">${newUl.outerHTML}</h6>
+        <p class="card-text mb-0 text-secondary">${post.date}</p>
       </div>
     `;
 
@@ -73,12 +88,25 @@ elForm.addEventListener("submit", (evt) => {
   const title = evt.target.title.value;
   const description = evt.target.description.value;
   const date = evt.target.date.value;
+  const elGenres = evt.target.genres;
+
+  console.log(elGenres);
+  const genres = [];
+
+  for (let i = 0; i < elGenres.length; i++) {
+    const element = elGenres[i];
+
+    if (element.checked) {
+      genres.push(element.value);
+    }
+  }
 
   const newPost = {
     image: image,
     title: title,
     description: description,
     date: date,
+    genres: genres,
   };
 
   posts.push(newPost);
@@ -107,13 +135,21 @@ elSearchForm.addEventListener("input", function (evt) {
 
 //CHANGE POSTS
 elChange.addEventListener("change", () => {
-  const typePosts = elChange.value;
+  const type = elChange.value;
 
   filteredPosts = [];
 
-  if (typePosts === "allPosts") {
+  if (type === "All posts") {
     renderPosts(posts);
   } else {
+    posts.forEach((post) => {
+      post.genres.forEach((genre) => {
+        if (genre.toLowerCase() === type.toLowerCase()) {
+          filteredPosts.push(post);
+        }
+      });
+    });
+
+    renderPosts(filteredPosts);
   }
-  console.log(elChange);
 });

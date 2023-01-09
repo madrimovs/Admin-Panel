@@ -125,8 +125,8 @@ elForm.addEventListener("submit", (evt) => {
 
 //SEARCH POSTS
 elSearchForm.addEventListener("input", function (evt) {
-  searchPost = [];
   evt.preventDefault();
+  searchPost = [];
 
   let value = elSearch.value;
 

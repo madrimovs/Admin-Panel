@@ -14,6 +14,7 @@ let filteredPosts = [];
 //ARRAY POSTS
 let posts = [
   {
+    id: 1,
     image: "https://picsum.photos/536/354",
     title: "Uzbekistan",
     description:
@@ -23,6 +24,7 @@ let posts = [
   },
 
   {
+    id: 2,
     image: "https://picsum.photos/536/354",
     title: "Sport",
     description:
@@ -32,6 +34,7 @@ let posts = [
   },
 
   {
+    id: 3,
     image: "https://picsum.photos/536/354",
     title: "Siyosat",
     description:
@@ -70,7 +73,13 @@ function renderPosts(array, element = elCards) {
         <h5 class="card-title">${post.title}</h5>
         <p class="card-text">${post.description}</p>
         <h6 class=" text-primary border-bottom ">${newUl.outerHTML}</h6>
-        <p class="card-text mb-0 text-secondary"><small>${post.date}</small></p>
+        <div class="d-flex justify-content-between align-items-center">
+          <p class="card-text mb-0 text-secondary"><small>${post.date}</small></p>
+          <div>
+            <button class="btn btn-sm btn-danger">Delete</button>
+            <button class="btn btn-sm btn-success">Edite</button>
+          </div>
+        </div>
       </div>
     `;
 

@@ -1,4 +1,4 @@
-//*********************************FUNCTION findElement()*******************************************//
+//***********************************FUNCTION findElement()*******************************************//
 function findElement(element, parent = document) {
 	return parent.querySelector(element);
 }
@@ -42,7 +42,7 @@ let posts = [
 	},
 ];
 
-//*******************************FUNCTION renderPosts()******************************************//
+//*********************************FUNCTION renderPosts()******************************************//
 function renderPosts(array, element = elCards) {
 	elCards.innerHTML = '';
 
@@ -89,7 +89,7 @@ function renderPosts(array, element = elCards) {
 
 renderPosts(posts);
 
-//*******************************elForm POSTS****************************************//
+//*********************************elForm POSTS****************************************//
 elForm.addEventListener('submit', (evt) => {
 	evt.preventDefault();
 
@@ -123,7 +123,7 @@ elForm.addEventListener('submit', (evt) => {
 	renderPosts(posts);
 });
 
-//*******************************SEARCH INPUT POSTS*******************************************//
+//*********************************SEARCH INPUT POSTS*******************************************//
 elSearchForm.addEventListener('input', function (evt) {
 	evt.preventDefault();
 	searchPost = [];
@@ -139,7 +139,7 @@ elSearchForm.addEventListener('input', function (evt) {
 	renderPosts(searchPost);
 });
 
-//*******************************CHANGE BUTTON POSTS*******************************************//
+//*********************************CHANGE BUTTON POSTS*******************************************//
 elChange.addEventListener('change', () => {
 	const type = elChange.value;
 

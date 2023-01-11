@@ -76,8 +76,14 @@ function renderPosts(array, element = elCards) {
 				<div class="d-flex justify-content-between align-items-center">
 						<p class="card-text mb-0 text-secondary"><small>${post.date}</small></p>
 					<div>
-						<button class="btn btn-sm btn-danger delete-btn" data-id="${post.id}" >Delete</button>
-						<button class="btn btn-sm btn-success" data-id="${post.id}" 
+						<button
+								class="btn btn-sm btn-danger delete-btn"
+								data-id="${post.id}" 
+								>Delete
+						</button>
+						<button
+								class="btn btn-sm btn-success"
+								data-id="${post.id}" 
 								data-bs-toggle="modal" 
 								data-bs-target="#staticBackdrop">Edite
 						</button>
@@ -136,7 +142,10 @@ elSearchForm.addEventListener("input", function (evt) {
 	let value = elSearch.value;
 
 	posts.forEach((evt) => {
-		if (evt.title.toLowerCase().includes(value.toLowerCase()) || evt.description.toLowerCase().includes(value.toLowerCase())) {
+		if (
+			evt.title.toLowerCase().includes(value.toLowerCase()) ||
+			evt.description.toLowerCase().includes(value.toLowerCase())
+		) {
 			searchPost.push(evt);
 		}
 	});
